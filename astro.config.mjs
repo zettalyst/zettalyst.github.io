@@ -6,6 +6,6 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://zettalyst.github.io',
-	integrations: [mdx(), sitemap()],
+  site: 'https://zettalyst.github.io',
+  integrations: [mdx(), sitemap()],
 });
