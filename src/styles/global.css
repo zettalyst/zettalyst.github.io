@@ -17,21 +17,21 @@
     0 8px 24px rgba(var(--gray), 33%), 0 16px 32px rgba(var(--gray), 33%);
 }
 @font-face {
-  font-family: 'NanumSquareNeo';
-  src: url('/fonts/NanumSquareNeo-Variable.woff') format('woff');
+  font-family: 'Pretendard';
+  src: url('/fonts/PretendardVariable.woff') format('woff');
   font-weight: 300;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: 'NanumSquareNeo';
-  src: url('/fonts/NanumSquareNeo-Variable.woff') format('woff');
+  font-family: 'Pretendard';
+  src: url('/fonts/PretendardVariable.woff') format('woff');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 body {
-  font-family: 'NanumSquareNeo', sans-serif;
+  font-family: 'Pretendard', sans-serif;
   margin: 0;
   padding: 0;
   text-align: left;
