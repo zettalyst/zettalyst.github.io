@@ -14,7 +14,9 @@ const { isGradation = false } = Astro.props;
   <nav class="flex items-center justify-between">
     <h2>
       <a href="/" class:list={['text-2xl font-black']}>
-        <span class={isGradation ? 'gradient-text' : 'text-[--text]'}>
+        <span
+          class:list={[isGradation ? 'gradient-text' : 'header-title-text']}
+        >
           {SITE_TITLE}
         </span>
       </a>
@@ -42,11 +44,10 @@ const { isGradation = false } = Astro.props;
   }
 
   .gradient-text {
-    background-image: linear-gradient(45deg, var(--pink), var(--purple));
-    background-clip: text;
+    background: linear-gradient(45deg, var(--pink), var(--purple));
     -webkit-background-clip: text;
+    background-clip: text;
     color: transparent;
-    transition: all 0.2s ease-in-out;
   }
 
   a {
