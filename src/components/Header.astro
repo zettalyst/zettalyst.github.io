@@ -1,51 +1,68 @@
 ---
 import { SITE_TITLE } from '../consts';
+import zettalystImage from '../assets/zettalyst.png';
+
+interface Props {
+  isGradation: boolean;
+}
+
+const { isGradation = false } = Astro.props;
 ---
 
-<header>
-  <nav>
-    <h2><a href="/">{SITE_TITLE}</a></h2>
-    <div class="internal-links">
-      <div></div>
+<header class="mb-14">
+  <nav class="flex items-center justify-between">
+    <h2>
+      <a
+        href="/"
+        class:list={[
+          'text-2xl font-black transition-all hover:opacity-80',
+          { 'hover:scale-[1.02]': isGradation },
+        ]}
+      >
+        <span class={isGradation ? 'gradient-text' : 'text-[--text]'}>
+          {SITE_TITLE}
+        </span>
+      </a>
+    </h2>
+    <div class="flex items-center gap-2 italic">
+      <span>by</span>
+      <a
+        href="https://github.com/zettalyst"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img
+          alt="Zettalyst"
+          src={zettalystImage.src}
+          class="h-8 w-8 rounded-full"
+        />
+      </a>
     </div>
   </nav>
 </header>
+
 <style>
-  header {
-    display: flex;
-    min-height: 78px;
-    margin: 0;
-    padding: 0 1em;
-    background: white;
-    box-shadow: 0 2px 8px rgba(var(--black), 5%);
-  }
-  h2 {
-    margin: 0;
-    font-size: 1em;
+  .header-title-text {
+    color: var(--text);
   }
 
-  h2 a,
-  h2 a.active {
-    text-decoration: none;
-  }
-  nav {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 960px;
-    max-width: calc(100% - 2em);
-    margin: auto;
-  }
-  nav a {
-    color: var(--black);
-    border-bottom: 4px solid transparent;
-    text-decoration: none;
-  }
-  nav a.active {
-    text-decoration: none;
+  .gradient-text {
+    background-image: linear-gradient(45deg, var(--pink), var(--purple));
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    transition: all 0.2s ease-in-out;
   }
 
-  nav div.internal-links {
-    margin-left: auto;
+  a {
+    transition: transform 0.2s ease-in-out;
+  }
+
+  a:hover {
+    transform: scale(1.05);
+  }
+
+  a:hover .gradient-text {
+    background-image: linear-gradient(45deg, var(--purple), var(--pink));
   }
 </style>

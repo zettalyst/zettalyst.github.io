@@ -1,101 +1,82 @@
 ---
+import { getCollection } from 'astro:content';
+import Color from 'colorjs.io';
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
-import { getCollection } from 'astro:content';
 import FormattedDate from '../components/FormattedDate.astro';
 
 const posts = (await getCollection('post')).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
+
+const postColors = posts.map((post) => {
+  // 색상 정의
+  const lightStart = new Color('lab(63 59.32 -1.47)');
+  const lightEnd = new Color('lab(33 42.09 -43.19)');
+  const lightRange = lightStart.range(lightEnd);
+  const darkStart = new Color('lab(81 32.36 -7.02)');
+  const darkEnd = new Color('lab(78 19.97 -36.75)');
+  const darkRange = darkStart.range(darkEnd);
+  // 각 포스트의 색상 계산
+  const today = new Date();
+  // 첫 포스트 날짜
+  const firstPostDate = new Date(2024, 10, 28);
+  const timeSinceFirstPost = today.getTime() - firstPostDate.getTime();
+  const timeSinceThisPost =
+    today.getTime() - new Date(post.data.pubDate).getTime();
+  const staleness = timeSinceThisPost / timeSinceFirstPost;
+  return {
+    light: lightRange(staleness).toString(),
+    dark: darkRange(staleness).toString(),
+  };
+});
 ---
 
-<!doctype html>
 <html lang="kr">
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-    <style>
-      main {
-        width: 960px;
-      }
-      ul {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 2rem;
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-      }
-      ul li {
-        width: 100%;
-      }
-      ul li * {
-        text-decoration: none;
-        transition: 0.2s ease;
-      }
-
-      ul li img {
-        margin-bottom: 0.5rem;
-        border-radius: 12px;
-      }
-      ul li a {
-        display: block;
-      }
-      .title {
-        margin: 0;
-        color: rgb(var(--black));
-        line-height: 1;
-      }
-      .date {
-        margin-top: 0.25rem;
-        margin-bottom: 0;
-        color: rgb(var(--gray));
-        font-size: 13px;
-      }
-      ul li a:hover h4,
-      ul li a:hover .date {
-        color: rgb(var(--accent));
-      }
-      ul li a p.description {
-        font-size: 16px;
-        margin-top: 0.25rem;
-      }
-      ul a:hover img {
-        box-shadow: var(--box-shadow);
-      }
-      @media (max-width: 720px) {
-        ul {
-          gap: 0.5em;
-        }
-        ul li {
-          width: 100%;
-          text-align: center;
-        }
-      }
-    </style>
   </head>
-  <body>
-    <Header />
+  <body class="mx-auto max-w-2xl bg-[--bg] px-5 py-12 text-[--text]">
+    <Header isGradation={false} />
     <main>
       <section>
-        <ul>
-          {
-            posts.map((post) => (
-              <li>
-                <a href={`/post/${post.slug}/`}>
-                  <h5 class="title">{post.data.title}</h5>
-                  <p class="date">
+        <ul class="space-y-16">
+          {posts.map((post, index) => (
+            <li>
+              <article>
+                <a
+                  href={`/post/${post.slug}/`}
+                  class="group block transform transition-all duration-150 ease-out hover:scale-[1.005]"
+                >
+                  <h2
+                    class="text-[28px] font-black"
+                    style={`
+                      --lightLink: ${postColors[index].light}; 
+                      --darkLink: ${postColors[index].dark}; 
+                      color: var(--lightLink);
+                    `}
+                  >
+                    {post.data.title}
+                  </h2>
+                  <div class="mt-2 text-sm text-gray-700 dark:text-gray-300">
                     <FormattedDate date={new Date(post.data.pubDate)} />
-                  </p>
-                  <p class="description">{post.data.description}</p>
+                  </div>
+                  <p class="mt-3 text-[--text]">{post.data.description}</p>
                 </a>
-              </li>
-            ))
-          }
+              </article>
+            </li>
+          ))}
         </ul>
       </section>
     </main>
-    <Footer />
   </body>
 </html>
+
+<style>
+  @media (prefers-color-scheme: dark) {
+    h2 {
+      color: var(--darkLink) !important;
+    }
+  }
+</style>
