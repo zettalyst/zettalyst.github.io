@@ -8,7 +8,7 @@
 }
 
 .markdown p {
-  @apply pb-8;
+  @apply pb-8 text-lg;
 }
 
 .markdown a {
@@ -72,15 +72,14 @@
 }
 
 .markdown ul {
-  margin-top: 0;
-  padding-bottom: 0;
-  padding-left: 0;
-  padding-right: 0;
-  padding-top: 0;
-  margin-bottom: 1.75rem;
-  list-style-position: outside;
-  list-style-image: none;
-  list-style: disc;
+  @apply my-6
+    ml-8  /* 왼쪽 여백 추가 */
+    list-decimal  /* 숫자 리스트 스타일 */
+    space-y-2;
+}
+
+.markdown ol {
+  @apply my-1 ml-4 mb-4 list-decimal space-y-2;
 }
 
 .markdown li {

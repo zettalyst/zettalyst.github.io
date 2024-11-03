@@ -2,7 +2,6 @@
 title: '포기하고 출력하라'
 description: '완벽주의가 아닌, 완료주의 글쓰기'
 pubDate: 'Oct 31 2024'
-heroImage: '/blog-placeholder-3.jpg'
 ---
 
 > ‘글쓰기는 당신의 생각이 얼마나 불완전한지를 보여주는 최선의 방법이다.’

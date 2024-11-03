@@ -2,7 +2,6 @@
 title: 'Last man standing'
 description: '살아남는 자가 강한 것이다'
 pubDate: 'Nov 1 2024'
-heroImage: '/blog-placeholder-3.jpg'
 ---
 
 마라톤 대회에 나가본 적 있으신가요?
