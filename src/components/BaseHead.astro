@@ -23,18 +23,21 @@ const { title, description, image = '/blog-placeholder-1.jpg' } = Astro.props;
 <!-- Font preloads -->
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
 <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
-<link
-  rel="preload"
-  href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
-  as="style"
-  crossorigin
-/>
 <noscript>
   <link
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
   />
 </noscript>
+
+<!-- Amplitude -->
+<script src="https://cdn.amplitude.com/libs/analytics-browser-2.11.9-min.js.gz">
+  // @ts-nocheck
+  window.amplitude.init('b4d59cc0455bed171cb3ab769daa5da5', {
+    fetchRemoteConfig: true,
+    autocapture: true,
+  });
+</script>
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
@@ -59,4 +62,7 @@ const { title, description, image = '/blog-placeholder-1.jpg' } = Astro.props;
 <meta property="twitter:image" content={new URL(image, Astro.url)} />
 
 <!-- Google Search Console -->
-<meta name="google-site-verification" content="w_QxcazC0OW1nS7-zXcUKos6sQOfPoeUZ6AercQkvxg" />
+<meta
+  name="google-site-verification"
+  content="w_QxcazC0OW1nS7-zXcUKos6sQOfPoeUZ6AercQkvxg"
+/>
