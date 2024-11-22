@@ -21,7 +21,7 @@ const postColors = posts.map((post) => {
   // 각 포스트의 색상 계산
   const today = new Date();
   // 첫 포스트 날짜
-  const firstPostDate = new Date(2024, 10, 28);
+  const firstPostDate = new Date(2024, 9, 28); // 2024년 10월 28일, js는 월을 0부터 시작함
   const timeSinceFirstPost = today.getTime() - firstPostDate.getTime();
   const timeSinceThisPost =
     today.getTime() - new Date(post.data.pubDate).getTime();
