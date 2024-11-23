@@ -38,7 +38,7 @@ pubDate: 'Nov 22 2024'
 
 프로젝트를 하다 보면 스스로 잘한다고 느끼는 이들이 있지만,  
 그들은 곧 성장의 한계에 부딪히고 사라진다.  
-바로 **의도적인 연습(Deliberate Practice)**이 부족하기 때문이다.
+바로 **의도적인 연습(Deliberate Practice)** 이 부족하기 때문이다.
 
 나 역시 이 단계에서 교만했던 경험이 있다.  
 2018년 AWS Summit에서 Serverless를 주제로 발표할 기회를 얻었지만,  
@@ -123,6 +123,7 @@ Serverless 생태계에 일찍이 기여할 기회가 있었지만
 
 [참고]
 - [Dreyfus model of skill acquisition](https://en.wikipedia.org/wiki/Dreyfus_model_of_skill_acquisition)
+- [Dunning–Kruger effect](https://en.wikipedia.org/wiki/Dunning%E2%80%93Kruger_effect)
 - [위대한 스타트업들의 공통점, 'Unlimited 노답'](https://brunch.co.kr/@class101/50)
 - [\[번역\]더 이상 배우려 하지 않는 개발자 : Expert Beginner의 등장](https://medium.com/@jwyeom63/%EB%8D%94-%EC%9D%B4%EC%83%81-%EB%B0%B0%EC%9A%B0%EB%A0%A4-%ED%95%98%EC%A7%80-%EC%95%8A%EB%8A%94-%EA%B0%9C%EB%B0%9C%EC%9E%90-expert-beginner%EC%9D%98-%EB%93%B1%EC%9E%A5-dd40c40aeedf)
 - [\[60회 백상\] 특별무대 - 이순재 '예술이란 무엇인가?' | JTBC 240507 방송](https://youtu.be/5ZQdLnRlli0)
