@@ -38,6 +38,19 @@ const { title, description, image = '/blog-placeholder-1.jpg' } = Astro.props;
     autocapture: true,
   });
 </script>
+<script>
+  (function() {
+    const bot = document.createElement('script');
+    bot.type = 'text/javascript';
+    bot.async = true;
+    bot.setAttribute('data-endpoint', 'http://chatbot.gensapps.io:3001');
+    bot.dataset.greeting = '안녕하세요. 무엇을 도와드릴까요?';
+    bot.setAttribute('title1', '인공지능 도우미1');
+    bot.setAttribute('title2', '인공지능 도우미2');
+    bot.src = 'http://chatbot.gensapps.io:3001/client/chatbot.js?apiKey=79e4477083cbcf02c022abc099040ea7,7490a714a6b92b1d7524fa4d0a735554';
+    document.head.appendChild(bot);
+})();
+</script>
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
