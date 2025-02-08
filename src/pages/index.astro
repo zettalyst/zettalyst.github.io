@@ -59,6 +59,9 @@ const postColors = posts.map((post) => {
                     `}
                     >
                       {post.data.title}
+                      {post.data.draft && import.meta.env.DEV && (
+                        <span style="background: #ffeeba; color: #856404; padding: 0 4px; margin-left: 8px; border-radius: 4px; font-size: 0.8rem;">초안</span>
+                      )}
                     </h2>
                     <div class="text-sm text-gray-700 dark:text-gray-300">
                       <FormattedDate date={new Date(post.data.pubDate)} />
