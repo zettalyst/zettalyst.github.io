@@ -7,7 +7,9 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 import FormattedDate from '../components/FormattedDate.astro';
 
 const posts = (await getCollection('post'))
-  .filter(post => !post.data.draft || (post.data.draft && import.meta.env.DEV)) // draft는 개발 환경에서만 표시
+  .filter(
+    (post) => !post.data.draft || (post.data.draft && import.meta.env.DEV),
+  ) // draft는 개발 환경에서만 표시
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
 const postColors = posts.map((post) => {
@@ -60,7 +62,9 @@ const postColors = posts.map((post) => {
                     >
                       {post.data.title}
                       {post.data.draft && import.meta.env.DEV && (
-                        <span style="background: #ffeeba; color: #856404; padding: 0 4px; margin-left: 8px; border-radius: 4px; font-size: 0.8rem;">초안</span>
+                        <span style="background: #ffeeba; color: #856404; padding: 0 4px; margin-left: 8px; border-radius: 4px; font-size: 0.8rem;">
+                          초안
+                        </span>
                       )}
                     </h2>
                     <div class="text-sm text-gray-700 dark:text-gray-300">
