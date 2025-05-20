@@ -1,6 +1,6 @@
 ---
 title: '개밥먹기 (Dogfooding)'
-description: ''
+description: 'IntelliJ를 만드는 JetBrains에게 배우는 개발 철학'
 pubDate: 'May 17 2025'
 ---
 
