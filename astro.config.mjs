@@ -8,6 +8,7 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   site: 'https://zettalyst.github.io',
   integrations: [mdx(), sitemap()],
+  trailingSlash: 'never',
 
   vite: {
     plugins: [tailwindcss()],
