@@ -29,9 +29,9 @@ No test suite is currently configured. Type checking is performed during build.
 
 ### Dynamic Color System
 The blog implements a unique visual feature where post title colors change based on age:
-- Located in `src/components/PostList.astro`
+- Located in `src/pages/index.astro` (not PostList.astro)
 - Uses Color.js and LAB color space for perceptually uniform transitions
-- Separate color ranges for light (HSL 25-70) and dark themes (HSL 25-60)
+- Separate color ranges for light (LAB color space) and dark themes
 - First post date: October 28, 2024 (used as baseline for calculations)
 
 ### Image Management

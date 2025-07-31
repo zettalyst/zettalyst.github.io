@@ -8,7 +8,7 @@ import { defineConfig } from 'astro/config';
 export default defineConfig({
   site: 'https://zettalyst.github.io',
   integrations: [mdx(), sitemap()],
-  trailingSlash: 'never',
+  trailingSlash: 'ignore',
 
   vite: {
     plugins: [tailwindcss()],
