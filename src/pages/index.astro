@@ -33,44 +33,52 @@ const postColors = posts.map((post) => {
     dark: darkRange(staleness).toString(),
   };
 });
+
+// 스태거 클래스 (최대 10개까지, 이후는 마지막 값 유지)
+const getStaggerClass = (index: number) => {
+  const staggerIndex = Math.min(index + 1, 10);
+  return `stagger-${staggerIndex}`;
+};
 ---
 
-<html lang="kr">
+<html lang="ko">
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
   </head>
-  <body class="mx-auto max-w-2xl bg-[--bg] px-5 py-12 text-[--text]">
+  <body class="mx-auto max-w-2xl bg-[--bg] px-5 py-14 text-[--text]">
     <Header isGradation={false} />
     <main>
       <section>
-        <ul class="space-y-16">
+        <ul class="flex flex-col gap-10">
           {
             posts.map((post, index) => (
-              <li>
+              <li class={`animate-fade-in-up ${getStaggerClass(index)}`}>
                 <article>
                   <a
                     href={`/post/${post.slug}`}
-                    class="group block transform transition-all duration-150 ease-out hover:scale-[1.005]"
+                    class="post-item group block"
                   >
                     <h2
-                      class="text-[28px] font-black"
+                      class="mb-1.5 text-[1.625rem] font-bold leading-snug tracking-tight"
                       style={`
-                      --lightLink: ${postColors[index].light}; 
-                      --darkLink: ${postColors[index].dark}; 
-                      color: var(--lightLink);
-                    `}
+                        --lightLink: ${postColors[index].light};
+                        --darkLink: ${postColors[index].dark};
+                        color: var(--lightLink);
+                      `}
                     >
                       {post.data.title}
                       {post.data.draft && import.meta.env.DEV && (
-                        <span style="background: #ffeeba; color: #856404; padding: 0 4px; margin-left: 8px; border-radius: 4px; font-size: 0.8rem;">
+                        <span class="ml-2 inline-block rounded bg-amber-100 px-1.5 py-0.5 align-middle text-xs font-medium text-amber-700">
                           초안
                         </span>
                       )}
                     </h2>
-                    <div class="text-sm text-gray-700 dark:text-gray-300">
+                    <time class="block text-[0.8rem] font-medium tracking-wide text-[--text-muted]">
                       <FormattedDate date={new Date(post.data.pubDate)} />
-                    </div>
-                    <p class="mt-1 text-[--text]">{post.data.description}</p>
+                    </time>
+                    <p class="mt-2 text-[0.95rem] leading-relaxed text-[--text] opacity-80">
+                      {post.data.description}
+                    </p>
                   </a>
                 </article>
               </li>
@@ -79,6 +87,10 @@ const postColors = posts.map((post) => {
         </ul>
       </section>
     </main>
+
+    <footer class="mt-20 animate-fade-in-up stagger-10 border-t border-[--hr] pt-8 text-center text-[0.8rem] text-[--text-muted]">
+      <p>&copy; {new Date().getFullYear()} Zettalyst. All rights reserved.</p>
+    </footer>
   </body>
 </html>
 

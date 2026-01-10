@@ -10,28 +10,27 @@ interface Props {
 const { isGradation = false } = Astro.props;
 ---
 
-<header class="mb-14">
+<header class="mb-16">
   <nav class="flex items-center justify-between">
     <h2>
-      <a href="/" class:list={['text-2xl font-black']}>
-        <span
-          class:list={[isGradation ? 'gradient-text' : 'header-title-text']}
-        >
+      <a href="/" class="text-[1.375rem] font-black tracking-tight">
+        <span class:list={[isGradation ? 'gradient-text' : 'header-title-text']}>
           {SITE_TITLE}
         </span>
       </a>
     </h2>
-    <div class="flex items-center gap-2 italic">
-      <span>by</span>
+    <div class="flex items-center gap-2.5 text-[0.9rem] text-[--text-muted]">
+      <span class="font-light italic">by</span>
       <a
         href="https://github.com/zettalyst"
         target="_blank"
         rel="noopener noreferrer"
+        class="block"
       >
         <Image
           alt="Zettalyst"
           src={zettalystImage}
-          class="h-8 w-8 rounded-full"
+          class="profile-image h-9 w-9 rounded-full ring-2 ring-transparent hover:ring-[--accent-line]"
         />
       </a>
     </div>
@@ -44,13 +43,9 @@ const { isGradation = false } = Astro.props;
   }
 
   .gradient-text {
-    background: linear-gradient(45deg, var(--pink), var(--purple));
+    background: linear-gradient(135deg, var(--pink), var(--purple));
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-  }
-
-  a {
-    transition: transform 0.2s ease-in-out;
   }
 </style>

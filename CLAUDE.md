@@ -8,7 +8,6 @@ This is an Astro-based static blog site deployed on GitHub Pages. The blog featu
 
 ## Key Commands
 
-### Development
 ```bash
 npm run dev        # Start dev server at localhost:4321
 npm run build      # Type check and build to ./dist/
@@ -16,48 +15,43 @@ npm run preview    # Preview production build locally
 npm run format     # Format code with Prettier
 ```
 
-### Testing
-No test suite is currently configured. Type checking is performed during build.
+No test suite configured. Type checking runs during build via `astro check`.
 
 ## Architecture & Key Patterns
 
 ### Content Structure
-- Blog posts live in `src/content/post/` with filename pattern: `YYYYMMDD_title.md`
-- Posts use frontmatter with required fields: title, description, pubDate
-- Optional fields: updatedDate, heroImage, draft
-- Draft posts are only visible in development mode
+- Blog posts: `src/content/post/YYYYMMDD_title.md`
+- Frontmatter schema defined in `src/content/config.ts`
+  - Required: title, description, pubDate
+  - Optional: updatedDate, heroImage, draft
+- Draft posts (`draft: true`) only visible in dev mode
 
-### Dynamic Color System
-The blog implements a unique visual feature where post title colors change based on age:
-- Located in `src/pages/index.astro` (not PostList.astro)
-- Uses Color.js and LAB color space for perceptually uniform transitions
-- Separate color ranges for light (LAB color space) and dark themes
-- First post date: October 28, 2024 (used as baseline for calculations)
+### Dynamic Color System (`src/pages/index.astro`)
+Post titles fade from bright to dark based on age:
+- Uses Color.js with LAB color space for perceptual uniformity
+- Calculates "staleness" as ratio of post age to time since first post
+- First post baseline: October 28, 2024
+- Separate color ranges for light/dark themes applied via CSS custom properties
+
+### Styling
+- Tailwind CSS v4 (Vite plugin, no `@apply` directive)
+- Dark/light theme via CSS custom properties (`--bg`, `--text`, `--title`)
+- Pretendard font family
+- Max content width: `max-w-2xl` (640px)
 
 ### Image Management
 - Source images: `src/assets/YYYYMMDD/`
 - Public images: `public/assets/YYYYMMDD/`
-- Blog posts reference images from public directory
+- Posts reference images from `/assets/YYYYMMDD/`
 
-### Styling
-- Tailwind CSS v4 with Vite plugin
-- Custom Pretendard font family
-- Dark/light theme support via CSS custom properties
-- Content max-width: 640px (2xl breakpoint)
+## Deployment
 
-## Important Configurations
+Automatic deployment via GitHub Actions on push to `main`:
+- Workflow: `.github/workflows/deploy.yml`
+- Uses `withastro/action@v3` for build
+- Deploys to GitHub Pages
 
-### Site Constants (`src/consts.ts`)
-- SITE_TITLE: "Fail Fast, Learn Faster"
-- SITE_DESCRIPTION: "zettalyst.github.io"
+## Generated Files
 
-### Build Output
-- Static files generated to `dist/` directory
-- Includes sitemap.xml and rss.xml for SEO/syndication
-
-## Development Notes
-
-- When adding new posts, maintain the YYYYMMDD filename convention
-- Images for posts should be added to both src/assets and public/assets directories
-- The dynamic color system automatically handles new posts without configuration
-- Draft posts can be created by adding `draft: true` to frontmatter
+- `dist/astronomy-sitemap-0.xml` - Custom sitemap filename
+- `dist/rss.xml` - RSS feed (generated via `src/pages/rss.xml.js`)

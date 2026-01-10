@@ -15,9 +15,9 @@ const { title, description, pubDate, updatedDate, heroImage, draft } =
     <BaseHead title={title} description={description} />
   </head>
 
-  <body class="mx-auto max-w-2xl bg-[--bg] px-5 py-12 text-[--text]">
+  <body class="mx-auto max-w-2xl bg-[--bg] px-5 py-14 text-[--text]">
     <Header isGradation />
-    <main class="mt-10 markdown">
+    <main class="markdown">
       <article>
         {
           draft && import.meta.env.DEV && (
