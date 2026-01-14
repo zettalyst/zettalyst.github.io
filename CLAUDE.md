@@ -34,10 +34,13 @@ Post titles fade from bright to dark based on age:
 - Separate color ranges for light/dark themes applied via CSS custom properties
 
 ### Styling
-- Tailwind CSS v4 (Vite plugin, no `@apply` directive)
-- Dark/light theme via CSS custom properties (`--bg`, `--text`, `--title`)
+- Tailwind CSS v4 via Vite plugin
+- `@apply` is used in `src/styles/markdown.css` for markdown content styling
+- Dark/light theme via CSS custom properties (`--bg`, `--text`, `--title`, `--link`, etc.)
+- Theme follows `prefers-color-scheme` media query
 - Pretendard font family
 - Max content width: `max-w-2xl` (640px)
+- Entry animations: `animate-fade-in-up` with `stagger-N` delay classes (1-10)
 
 ### Image Management
 - Source images: `src/assets/YYYYMMDD/`
@@ -48,10 +51,10 @@ Post titles fade from bright to dark based on age:
 
 Automatic deployment via GitHub Actions on push to `main`:
 - Workflow: `.github/workflows/deploy.yml`
-- Uses `withastro/action@v3` for build
+- Uses `withastro/action@v3`
 - Deploys to GitHub Pages
 
 ## Generated Files
 
-- `dist/astronomy-sitemap-0.xml` - Custom sitemap filename
+- `dist/astronomy-sitemap-0.xml` - Custom sitemap filename (configured in `astro.config.mjs`)
 - `dist/rss.xml` - RSS feed (generated via `src/pages/rss.xml.js`)
